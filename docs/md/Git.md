@@ -1,4 +1,4 @@
-```bash
+```basic
 配置
 git config --global user.name 用户名	设置用户签名
 git config --global user.email email地址	设置用户email地址

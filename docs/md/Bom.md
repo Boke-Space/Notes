@@ -1,4 +1,4 @@
-```javascript
+```js
 this	指向事件函数调用者
 全局作用域或普通函数中this指向全局对象window
 方法调用中谁调用this就指向谁
@@ -56,7 +56,7 @@ js执行机制
 
 <img src="C:\Users\86135\Pictures\微信图片_20220423185131.png" style="zoom:150%;" />
 
-```javascript
+```js
 立即执行函数 独立创建一个作用域 里面所有变量为局部变量
 (function(){})()	(function(){}())
 ```
