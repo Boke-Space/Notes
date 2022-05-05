@@ -1,3 +1,2 @@
-# Headline
+> Boke Notes
 
-> An awesome project.
