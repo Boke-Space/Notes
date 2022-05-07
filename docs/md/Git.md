@@ -1,4 +1,4 @@
-```basic
+```
 配置
 git config --global user.name 用户名	设置用户签名
 git config --global user.email email地址	设置用户email地址
@@ -33,3 +33,20 @@ git reflog	可以查看所有分支的所有操作记录（包括已被删除的
 
 ```
 
+> ## 一、开发分支（dev）上的代码达到上线的标准后，要合并到 master 分支
+
+
+
+`git checkout dev`
+`git pull`
+`git checkout master`
+`git merge dev`
+`git push -u origin master`
+
+> ## 二、当master代码改动了，需要更新开发分支（dev）上的代码
+
+`git checkout master` 
+`git pull` 
+`git checkout dev`
+`git merge master` 
+`git push -u origin dev`

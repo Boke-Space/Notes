@@ -1,91 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <title>Boke Notes</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <title>Boke Notes</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 
-<body>
-  <div id="app"></div>
-
-  <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
-
-  <script>
-    window.$docsify = {
-      name: 'Boke Notes', // 文档标题，会显示在侧边栏顶部
-      repo: 'https://gitee.com/Boke', // 右上角Github图标链接
-      loadNavbar: true, // 默认加载 _navbar.md，作为顶部导航栏
-      loadSidebar: true, // 默认加载 _sidebar.md，作为侧边栏
-      subMaxLevel: 3, // 生成目录的最大层级
-      search: {
-        paths: 'auto',
-        placeholder: '🔍 搜索',
-        noData: '找不到结果',
-        depth: 3,
-      },
-      count: {
-        countable:true,
-        fontsize:'0.9em',
-        color:'rgb(90,90,90)',
-        language:'chinese' 
-      },
-    }
-  </script>
-
-  <script>
-    L2Dwidget.init({
-      "model": {
-        //jsonpath控制显示那个小萝莉模型，
-        //(切换模型需要改动)
-        jsonPath: "https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json",
-        "scale": 1
-      },
-      "display": {
-        "position": "right", //看板娘的表现位置
-        "width": 70,  //小萝莉的宽度
-        "height": 140, //小萝莉的高度
-        "hOffset": 35,
-        "vOffset": -20
-      },
-      "mobile": {
-        "show": true,
-        "scale": 0.5
-      },
-      "react": {
-        "opacityDefault": 0.7,
-        "opacityOnHover": 0.2
+    <style>
+      /* 滚动条宽度 */
+      ::-webkit-scrollbar {
+        width: 5px;
       }
-    });
-  </script>
 
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
-  <!-- 搜索插件 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
-  <!-- 一键复制 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
-  <!-- 字数统计 -->
-  <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
-  <!-- 图片缩放 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
-  <!-- emoji -->  
-  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
-  <!-- 点击爱心 -->
-  <script src="//cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script>
+      /* 滚动条颜色 */
+      ::-webkit-scrollbar-thumb {
+        background-image: linear-gradient(#6ecd56, #33a9dc, #cb6196, #c16290);
+        border-radius: 2em;
+      }
 
-  <!-- 代码高亮 -->
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-shell-session.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-http.min.js"></script>
+      /*侧边栏*/
+      .sidebar {
+        padding-top: 6px;
+      }
 
-</body>
+      aside.sidebar ul li {
+        margin: 0;
+        position: relative;
+      }
+
+      aside.sidebar ul li ul {
+        margin: 6px 0;
+      }
+
+      aside.sidebar ul li p {
+        padding-left: 22px;
+        font-size: 18px;
+        font-weight: normal;
+      }
+
+      aside.sidebar ul li a {
+        line-height: 35px;
+        font-size: 14px;
+        padding: 3px 0 3px 22px;
+      }
+
+      aside.sidebar ul li.active>a {
+        font-size: 16px !important;
+      }
+
+      aside.sidebar ul li.active>a:before {
+        content: '' !important;
+        position: absolute !important;
+        margin: 0 !important;
+        width: 10px !important;
+        height: 10px !important;
+        top: 15px !important;
+        left: 0px !important;
+        border-radius: 50% !important;
+        background-color: #fed24a !important;
+        box-shadow: 0 0 0 3px rgba(254, 210, 74, 0.4) !important;
+      }
+
+
+      /*加重描述strong*/
+      .markdown-section strong {
+        color: rgb(0, 170, 127);
+      }
+
+
+      /*代码块头部图标 start*/
+      .markdown-section pre:before {
+        content: '';
+        display: block;
+        background: url(https://gitee.com/wugenqiang/PictureBed/raw/master/images01/20200716201955.png);
+        height: 30px;
+        background-size: 40px;
+        background-repeat: no-repeat;
+        background-color: #1C1C1C;
+        background-position: 10px 10px;
+      }
+      /*代码块头部图标 end*/
+
+      .markdown-section pre>code {
+        color: #c0c3c1 !important;
+        font-family: 'Inconsolata', consolas,"PingFang SC", "Microsoft YaHei", monospace !important;
+        background-color: #212121 !important;    //#accfff  #282c34
+        font-size: 15px !important;
+        white-space: pre !important;
+        line-height: 1.5 !important;
+        -moz-tab-size: 4 !important;
+        -o-tab-size: 4 !important;
+        tab-size: 4 !important;
+        /*border-radius: .3em;*/
+      }
+
+
+      /*修改代码块代码颜色显示*/
+ 
+      .token.CodeMirror-gutters {
+        background: #263238;
+        color: rgb(83, 127, 126);
+        border: none;
+      }
+
+      .token.CodeMirror-guttermarker,
+      .token.CodeMirror-guttermarker-subtle,
+      .token.CodeMirror-linenumber {
+        color: rgb(83, 127, 126);
+      }
+
+      .token.CodeMirror-cursor {
+        border-left: 1px solid #f8f8f0;
+      }
+
+      .token div.CodeMirror-selected {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .token.CodeMirror-focused div.CodeMirror-selected {
+        background: rgba(255, 255, 255, 0.10);
+      }
+
+      .token.CodeMirror-line::selection,
+      .token.CodeMirror-line>span::selection,
+      .token.CodeMirror-line>span>span::selection {
+        background: rgba(255, 255, 255, 0.10);
+      }
+
+      .token.CodeMirror-line::-moz-selection,
+      .token.CodeMirror-line>span::-moz-selection,
+      .token.CodeMirror-line>span>span::-moz-selection {
+        background: rgba(255, 255, 255, 0.10);
+      }
+
+      .token.CodeMirror-activeline-background {
+        background: rgba(0, 0, 0, 0);
+      }
+
+      .token.keyword {
+        color: rgba(199, 146, 234, 1);
+      }
+
+      .toke.operator {
+        color: rgba(233, 237, 237, 1);
+      }
+
+      .token.variable-2 {
+        color: #80CBC4;
+      }
+
+      .token.variable-3 {
+        color: #82B1FF;
+      }
+
+      .token.builtin {
+        color: #DECB6B;
+      }
+
+      .token.atom {
+        color: #F77669;
+      }
+
+      .token.umber {
+        color: #F77669;
+      }
+
+      .token.def {
+        color: rgba(233, 237, 237, 1);
+      }
+
+      .token.string {
+        color: #C3E88D;
+      }
+
+      .token.string-2 {
+        color: #80CBC4;
+      }
+
+      .token.comment {
+        color: #546E7A;
+      }
+
+      .token.variable {
+        color: #82B1FF;
+      }
+
+      .token.tag {
+        color: #80CBC4;
+      }
+
+      .token.meta {
+        color: #80CBC4;
+      }
+
+      .token.attribute {
+        color: #FFCB6B;
+      }
+
+      .token.property {
+        color: #80CBAE;
+      }
+
+      .token.qualifier {
+        color: #DECB6B;
+      }
+
+      .token.variable-3 {
+        color: #DECB6B;
+      }
+
+      .token.tag {
+        color: rgba(255, 83, 112, 1);
+      }
+
+      .token.error {
+        color: rgba(255, 255, 255, 1.0);
+        background-color: #EC5F67;
+      }
+
+      .token.CodeMirror-matchingbracket {
+        text-decoration: underline;
+        color: white !important;
+      }
+
+      .CodeMirror-hints.darcula {
+        font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+        color: #9C9E9E;
+        background-color: #3B3E3F !important;
+      }
+
+      .CodeMirror-hints.darcula .CodeMirror-hint-active {
+        background-color: #494D4E !important;
+        color: #9C9E9E !important;
+      }
+
+      ol,
+      ul,
+      li {
+        line-height: 27px !important;
+        font-size: 16px !important;
+      }
+
+      @media (min-width:600px) {
+        .markdown-section pre>code {
+          font-size: 15px !important;
+          letter-spacing: 1.1px !important;
+        }
+
+      }
+
+      @media (max-width:600px) {
+        .markdown-section pre>code {
+          padding-top: 5px;
+          padding-bottom: 5px;
+          padding-left: 16px !important;
+        }
+
+        pre:after {
+          content: "" !important;
+        }
+      }
+
+      section.cover h1 {
+        margin: 0;
+      }
+
+      pre {
+        background-color: #212121 !important;
+      }
+
+      @media (min-width:600px) {
+        pre code {
+          /*box-shadow: 2px 1px 20px 2px #aaa;*/
+          /*border-radius: 10px !important;*/
+          padding-left: 20px !important;
+        }
+
+      }
+
+      @media (max-width:600px) {
+        pre {
+          padding-left: 3px !important;
+          padding-right: 3px !important;
+          margin-left: -20px !important;
+          margin-right: -20px !important;
+          box-shadow: 0px 0px 20px 0px #f7f7f7 !important;
+        }
+
+        /*代码块复制按钮默认隐藏*/
+        .docsify-copy-code-button {
+          display: none;
+        }
+
+        .advertisement {
+          display: none;
+        }
+
+      }
+
+      .markdown-section pre {
+        padding-left: 0 !important;
+        padding-right: 0px !important;
+      }
+
+      .markdown-section {
+        margin: 0 3.2% !important;
+      }
+    </style>
+
+  </head>
+
+
+  <body>
+    <div id="app"></div>
+
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+
+
+    <script>
+      window.$docsify = {
+        name: 'Boke Notes', // 文档标题，会显示在侧边栏顶部
+        repo: 'https://gitee.com/Boke', // 右上角Github图标链接
+        loadNavbar: true, // 默认加载 _navbar.md，作为顶部导航栏
+        loadSidebar: true, // 默认加载 _sidebar.md，作为侧边栏
+        subMaxLevel: 3, // 生成目录的最大层级
+        search: {
+          paths: 'auto',
+          placeholder: '🔍 搜索',
+          noData: '找不到结果',
+          depth: 3,
+        },
+        count: {
+          countable: true,
+          fontsize: '0.9em',
+          color: 'rgb(90,90,90)',
+          language: 'chinese'
+        },
+        pagination: {
+          previousText: '上一章',
+          nextText: '下一章',
+        },
+      }
+    </script>
+
+    <script>
+      L2Dwidget.init({
+        "model": {
+          //jsonpath控制显示那个小萝莉模型，
+          //(切换模型需要改动)
+          jsonPath: "https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json",
+          "scale": 1
+        },
+        "display": {
+          "position": "right", //看板娘的表现位置
+          "width": 70, //小萝莉的宽度
+          "height": 140, //小萝莉的高度
+          "hOffset": 35,
+          "vOffset": -20
+        },
+        "mobile": {
+          "show": true,
+          "scale": 0.5
+        },
+        "react": {
+          "opacityDefault": 0.7,
+          "opacityOnHover": 0.2
+        }
+      });
+    </script>
+
+    <!-- Docsify v4 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+    <!-- 搜索插件 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+    <!-- 一键复制 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code"></script>
+    <!-- 字数统计 -->
+    <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+    <!-- 图片缩放 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+    <!-- emoji -->
+    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+    <!-- 点击爱心 -->
+    <script src="//cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script>
+    <!-- 分页插件 -->
+    <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
+    <!-- 回到顶部功能 -->
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/jquery.goup.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $.goup({
+          trigger: 100,
+          bottomOffset: 52,
+          locationOffset: 25,
+          titleAsText: true
+        });
+      });
+    </script>
+
+    <!-- 代码块样式优化-->
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-c.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-cpp.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-css.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-docker.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-java.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-javascript.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-json.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-latex.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-sql.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-php.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-scala.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-nginx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-json.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-markdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/prism-python.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/js/prism-yaml.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/StaticRepo/src/js/prism-go.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/wugenqiang/StaticRepo/src/js/prism-matlab.js"></script>
+
+  </body>
 </html>

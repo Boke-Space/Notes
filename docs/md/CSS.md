@@ -1,6 +1,6 @@
 > 盒子模型(Box Model)
 
-<img src="E:\BokeNotes\docs\image\盒子模型.gif" style="zoom: 67%;" />
+<img src="https://guli-ddu.oss-cn-beijing.aliyuncs.com/BoxModel.png" />
 
 
 
@@ -61,9 +61,11 @@
 
 > 文字换行和省略
 
-`white-space: nowrap; 		// 文字不允许换行（单行文本）`
-`overflow: hidden; 			// 溢出部分隐藏`
-`text-overflow: ellipsis;	// 文本溢出后，使用 ... 代替`
+```CSS
+white-space: nowrap; 		// 文字不允许换行（单行文本）
+overflow: hidden; 			// 溢出部分隐藏`
+text-overflow: ellipsis;	// 文本溢出后，使用 ... 代替
+```
 
 > 边距
 
@@ -74,6 +76,9 @@
 > 居中
 
 `display: flex;					//flex布局`
+
+​      `flex-direction: column;		//纵向布局`
+
 `align-items: center; 			//垂直居中`
 `justify-content: space-between; //两边贴紧，再平分剩余空间`
 
@@ -99,3 +104,10 @@
 ​	`}`
 
 `}`
+
+
+
+
+
+\```html <p>This is a paragraph</p> <a href="//docsify.js.org/">Docsify</a> ```
+
