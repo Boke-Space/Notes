@@ -107,7 +107,3 @@ text-overflow: ellipsis;	// 文本溢出后，使用 ... 代替
 
 
 
-
-
-\```html <p>This is a paragraph</p> <a href="//docsify.js.org/">Docsify</a> ```
-
