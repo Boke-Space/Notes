@@ -8,4 +8,7 @@
     * [ES6+](ECMAScript6+/readme)
     * [Promise & Async/Await](Promise/readme.md)
     * [Ajax](Ajax/readme)
+    * [Git](Git/Git)
+    * [UniShop](UniShop/readme)
+    * [Headline](Headline/Headline)
 
